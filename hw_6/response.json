@@ -1,0 +1,46 @@
+{
+  "took" : 7,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 3,
+      "relation" : "eq"
+    },
+    "max_score" : 1.2535897,
+    "hits" : [
+      {
+        "_index" : "otus-hw",
+        "_type" : "_doc",
+        "_id" : "1",
+        "_score" : 1.2535897,
+        "_source" : {
+          "mommy_field" : "моя мама мыла посуду а кот жевал сосиски"
+        }
+      },
+      {
+        "_index" : "otus-hw",
+        "_type" : "_doc",
+        "_id" : "3",
+        "_score" : 0.89614034,
+        "_source" : {
+          "mommy_field" : "мама мыла раму"
+        }
+      },
+      {
+        "_index" : "otus-hw",
+        "_type" : "_doc",
+        "_id" : "2",
+        "_score" : 0.3235163,
+        "_source" : {
+          "mommy_field" : "рама была отмыта и вылизана котом"
+        }
+      }
+    ]
+  }
+}
