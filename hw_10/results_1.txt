@@ -1,0 +1,96 @@
+[KEYS = 15][NODES = 3][FAILURE TOLERANCE = 1]
+
+[NODE1] consul members
+Node        Address          Status  Type    Build   Protocol  DC   Partition  Segment
+172.29.0.2  172.29.0.2:8301  alive   server  1.12.2  2         dc1  default    <all>
+172.29.0.3  172.29.0.3:8301  alive   server  1.12.2  2         dc1  default    <all>
+172.29.0.4  172.29.0.4:8301  alive   server  1.12.2  2         dc1  default    <all>
+
+[NODE2] consul kv delete test/
+Success! Deleted key: test/
+
+[NODE1] consul kv put test/key0 value0
+Success! Data written to: test/key0
+
+[NODE2] consul kv put test/key1 value1
+Success! Data written to: test/key1
+
+[NODE3] consul kv put test/key2 value2
+Success! Data written to: test/key2
+
+[NODE1] consul kv put test/key3 value3
+Success! Data written to: test/key3
+
+[NODE2] consul kv put test/key4 value4
+Success! Data written to: test/key4
+
+[NODE3] consul kv put test/key5 value5
+Success! Data written to: test/key5
+
+[NODE1] consul kv put test/key6 value6
+Success! Data written to: test/key6
+
+[NODE2] consul kv put test/key7 value7
+Success! Data written to: test/key7
+
+[NODE3] consul kv put test/key8 value8
+Success! Data written to: test/key8
+
+[NODE1] consul kv put test/key9 value9
+Success! Data written to: test/key9
+
+[NODE2] consul kv put test/key10 value10
+Success! Data written to: test/key10
+
+[NODE3] consul kv put test/key11 value11
+Success! Data written to: test/key11
+
+[NODE1] consul kv put test/key12 value12
+Success! Data written to: test/key12
+
+[NODE2] consul kv put test/key13 value13
+Success! Data written to: test/key13
+
+[NODE3] consul kv put test/key14 value14
+Success! Data written to: test/key14
+
+[NODE1] consul kv get -recurse
+test/key0:value0
+test/key1:value1
+test/key10:value10
+test/key11:value11
+test/key12:value12
+test/key13:value13
+test/key14:value14
+test/key2:value2
+test/key3:value3
+test/key4:value4
+test/key5:value5
+test/key6:value6
+test/key7:value7
+test/key8:value8
+test/key9:value9
+
+[NODE1] STOP
+
+[NODE3] consul kv get -recurse
+test/key0:value0
+test/key1:value1
+test/key10:value10
+test/key11:value11
+test/key12:value12
+test/key13:value13
+test/key14:value14
+test/key2:value2
+test/key3:value3
+test/key4:value4
+test/key5:value5
+test/key6:value6
+test/key7:value7
+test/key8:value8
+test/key9:value9
+
+[NODE2] STOP
+
+[NODE3] consul kv get -recurse
+Error querying Consul agent: Unexpected response code: 500 (No cluster leader)

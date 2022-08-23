@@ -1,0 +1,49 @@
+[KEYS = 8][NODES = 3][FAILURE TOLERANCE = 1]
+
+[NODE1] consul members
+Node        Address          Status  Type    Build   Protocol  DC   Partition  Segment
+172.28.0.2  172.28.0.2:8301  alive   server  1.12.2  2         dc1  default    <all>
+172.28.0.3  172.28.0.3:8301  alive   server  1.12.2  2         dc1  default    <all>
+172.28.0.4  172.28.0.4:8301  alive   server  1.12.2  2         dc1  default    <all>
+
+[NODE2] consul kv delete test/
+Success! Deleted key: test/
+
+[NODE1] consul kv put test/key0 value0
+Success! Data written to: test/key0
+
+[NODE2] consul kv put test/key1 value1
+Success! Data written to: test/key1
+
+[NODE3] consul kv put test/key2 value2
+Success! Data written to: test/key2
+
+[NODE1] consul kv put test/key3 value3
+Success! Data written to: test/key3
+
+[NODE2] consul kv put test/key4 value4
+Success! Data written to: test/key4
+
+[NODE3] consul kv put test/key5 value5
+Success! Data written to: test/key5
+
+[NODE1] consul kv put test/key6 value6
+Success! Data written to: test/key6
+
+[NODE2] consul kv put test/key7 value7
+Success! Data written to: test/key7
+
+[NODE1] consul kv get -recurse
+test/key0:value0
+test/key1:value1
+test/key2:value2
+test/key3:value3
+test/key4:value4
+test/key5:value5
+test/key6:value6
+test/key7:value7
+
+[NODE1] STOP
+
+[NODE3] consul kv get -recurse
+Error querying Consul agent: Unexpected response code: 500 (rpc error getting client: failed to get conn: dial tcp <nil>->172.28.0.2:8300: i/o timeout)

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  consul-1:
+    container_name: consul-1
+    hostname: consul-1
+    image: bitnami/consul:1.12.2
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=3
+      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
+      - CONSUL_DISABLE_KEYRING_FILE=true
+      - CONSUL_RETRY_JOIN_ADDRESS=consul-1
+
+  consul-2:
+    container_name: consul-2
+    hostname: consul-2
+    image: bitnami/consul:1.12.2
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=3
+      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
+      - CONSUL_DISABLE_KEYRING_FILE=true
+      - CONSUL_RETRY_JOIN_ADDRESS=consul-1
+
+  consul-3:
+    container_name: consul-3
+    hostname: consul-3
+    image: bitnami/consul:1.12.2
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=3
+      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
+      - CONSUL_DISABLE_KEYRING_FILE=true
+      - CONSUL_RETRY_JOIN_ADDRESS=consul-1

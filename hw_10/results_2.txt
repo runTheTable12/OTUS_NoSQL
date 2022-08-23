@@ -1,0 +1,117 @@
+[KEYS = 25][NODES = 3][FAILURE TOLERANCE = 1]
+
+[NODE1] consul members
+Node        Address          Status  Type    Build   Protocol  DC   Partition  Segment
+172.31.0.2  172.31.0.2:8301  alive   server  1.12.2  2         dc1  default    <all>
+172.31.0.3  172.31.0.3:8301  alive   server  1.12.2  2         dc1  default    <all>
+172.31.0.4  172.31.0.4:8301  alive   server  1.12.2  2         dc1  default    <all>
+
+[NODE2] consul kv delete test/
+Success! Deleted key: test/
+
+[NODE1] consul kv put test/key0 value0
+Success! Data written to: test/key0
+
+[NODE2] consul kv put test/key1 value1
+Success! Data written to: test/key1
+
+[NODE3] consul kv put test/key2 value2
+Success! Data written to: test/key2
+
+[NODE1] consul kv put test/key3 value3
+Success! Data written to: test/key3
+
+[NODE2] consul kv put test/key4 value4
+Success! Data written to: test/key4
+
+[NODE3] consul kv put test/key5 value5
+Success! Data written to: test/key5
+
+[NODE1] consul kv put test/key6 value6
+Success! Data written to: test/key6
+
+[NODE2] consul kv put test/key7 value7
+Success! Data written to: test/key7
+
+[NODE3] consul kv put test/key8 value8
+Success! Data written to: test/key8
+
+[NODE1] consul kv put test/key9 value9
+Success! Data written to: test/key9
+
+[NODE2] consul kv put test/key10 value10
+Success! Data written to: test/key10
+
+[NODE3] consul kv put test/key11 value11
+Success! Data written to: test/key11
+
+[NODE1] consul kv put test/key12 value12
+Success! Data written to: test/key12
+
+[NODE2] consul kv put test/key13 value13
+Success! Data written to: test/key13
+
+[NODE3] consul kv put test/key14 value14
+Success! Data written to: test/key14
+
+[NODE1] consul kv put test/key15 value15
+Success! Data written to: test/key15
+
+[NODE2] consul kv put test/key16 value16
+Success! Data written to: test/key16
+
+[NODE3] consul kv put test/key17 value17
+Success! Data written to: test/key17
+
+[NODE1] consul kv put test/key18 value18
+Success! Data written to: test/key18
+
+[NODE2] consul kv put test/key19 value19
+Success! Data written to: test/key19
+
+[NODE3] consul kv put test/key20 value20
+Success! Data written to: test/key20
+
+[NODE1] consul kv put test/key21 value21
+Success! Data written to: test/key21
+
+[NODE2] consul kv put test/key22 value22
+Success! Data written to: test/key22
+
+[NODE3] consul kv put test/key23 value23
+Success! Data written to: test/key23
+
+[NODE1] consul kv put test/key24 value24
+Success! Data written to: test/key24
+
+[NODE1] consul kv get -recurse
+test/key0:value0
+test/key1:value1
+test/key10:value10
+test/key11:value11
+test/key12:value12
+test/key13:value13
+test/key14:value14
+test/key15:value15
+test/key16:value16
+test/key17:value17
+test/key18:value18
+test/key19:value19
+test/key2:value2
+test/key20:value20
+test/key21:value21
+test/key22:value22
+test/key23:value23
+test/key24:value24
+test/key3:value3
+test/key4:value4
+test/key5:value5
+test/key6:value6
+test/key7:value7
+test/key8:value8
+test/key9:value9
+
+[NODE1] STOP
+
+[NODE3] consul kv get -recurse
+Error querying Consul agent: Unexpected response code: 500 (rpc error getting client: failed to get conn: dial tcp <nil>->172.31.0.2:8300: i/o timeout)
