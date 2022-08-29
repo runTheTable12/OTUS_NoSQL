@@ -54,7 +54,7 @@ print("-----------------------")
 print("*** запись JSON как list")
 print(datetime.datetime.now())
 for chunk in data:
-    r.rpush('list_test', json.dumps(chunk))
+    pipeline.rpush('list_test', json.dumps(chunk))
 print(datetime.datetime.now())
 
 print("*** чтение JSON как list")
